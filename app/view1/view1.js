@@ -9,18 +9,40 @@ angular.module('myApp.view1', ['ngRoute'])
   });
 }])
 
-.controller('View1Ctrl', [function() {
+.controller('View1Ctrl', ['$scope',function($scope) {
   /**
    * Created by zhou on 07/05/2016.
    */
-  var noOfRecrodToRestore=1;
-  this.live=true;
-  this.itemState=1;
+  var noOfRecrodToRestore=2;
+  var live=true;
+  var itemState=1;
+  $scope.myData = [
+    /*{
+      "firstName": "Cox",
+      "lastName": "Carney",
+      "company": "Enormo",
+      "employed": true
+    },
+    {
+      "firstName": "Lorraine",
+      "lastName": "Wise",
+      "company": "Comveyer",
+      "employed": false
+    },
+    {
+      "firstName": "Nancy",
+      "lastName": "Waters",
+      "company": "Fuelton",
+      "employed": false
+    }*/
+  ];
+
+
   function onQuerySucceeded()
   {
     //display titles in grid
-    displayAllItems(this.recycleItemCollection);
-    //loopThroughRecycleItems(this.recycleItemCollection);
+    displayAllItems(recycleItemCollection);
+    //loopThroughRecycleItems(recycleItemCollection);
   }
   function displayAllItems(recycleItemCollection){
     var recycleItemArray=[];
@@ -42,12 +64,16 @@ angular.module('myApp.view1', ['ngRoute'])
                            "deletedDate":recycleBinItem.get_deletedDate(),
                            "deletedBy":recycleBinItem.get_deletedBy(),
           }
-          recycleItemArray.push(itemToRestore);
+          console.log("pushed one item");
+          console.log($scope.myData.length);
+          $scope.myData.push(itemToRestore);
         }
+        $scope.$digest();
       }
 
     }
-    $scope.myData = recycleItemArray;
+    $scope.myData
+   // $scope.myData = recycleItemArray;
   }
   function loopThroughRecycleItems(recycleItemCollection) {
     if (recycleItemCollection.get_count() > 0) {
@@ -136,6 +162,23 @@ angular.module('myApp.view1', ['ngRoute'])
 
 
   }
+  var recycleItemCollection;
+  function setUp(){
+    recycleItemCollection={};
+    recycleItemCollection.get_count=function(){return 2;};
+    recycleItemCollection.itemAt=function(index){
+
+      var item={};
+      item.get_id=function(){return 1};
+      item.get_title=function(){return "my title"};
+      item.get_itemState=function(){return 1};
+      item.get_dirName=function(){return "my dirName"};
+      item.get_deletedBy=function(){return "my deletedBy"};
+      item.get_deletedDate=function(){return "my deletedDate"};
+      return item;
+    };
+
+  }
 // Anonymous "self-invoking" function
   (function() {
     // Load the script
@@ -157,6 +200,8 @@ angular.module('myApp.view1', ['ngRoute'])
     // Start polling...
     checkReady(function(jQuery) {
       //runCode();
+      setUp();
+      onQuerySucceeded();
     });
   })();
 }]);
