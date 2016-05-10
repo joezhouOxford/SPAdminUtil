@@ -9,6 +9,30 @@ angular.module('myApp.view2', ['ngRoute'])
   });
 }])
 
-.controller('View2Ctrl', [function() {
+.controller('View2Ctrl', ['$scope',function($scope) {
+  var myData = [
+    {
+     "firstName": "Cox",
+     "lastName": "Carney",
+     "company": "Enormo",
+     "employed": true
+     },
+     {
+     "firstName": "Lorraine",
+     "lastName": "Wise",
+     "company": "Comveyer",
+     "employed": false
+     },
+     {
+     "firstName": "Nancy",
+     "lastName": "Waters",
+     "company": "Fuelton",
+     "employed": false
+     }
+  ];
+  $scope.gridOptions = {
+    data: myData,
+    enableFiltering: true
+  };
 
 }]);
