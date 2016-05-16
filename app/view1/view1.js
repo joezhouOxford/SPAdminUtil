@@ -4,7 +4,7 @@ angular.module('myApp.view1', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/view1', {
-    templateUrl: '/teams/EOCBM/admin/app/bulkUpdateByPersonalRef/view1/view1.html',
+    templateUrl: siteRootRelativePath+'view1/view1.html',
     controller: 'View1Ctrl'
   });
 }])
@@ -151,6 +151,8 @@ angular.module('myApp.view1', ['ngRoute'])
 
 
   }
+  if(typeof ExecuteOrDelayUntilScriptLoaded != 'undefined'){
+    ExecuteOrDelayUntilScriptLoaded(runCode,"sp.js");
+  }
 
-  ExecuteOrDelayUntilScriptLoaded(runCode,"sp.js");
 }]);

@@ -4,7 +4,7 @@ angular.module('myApp.view2', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/view2', {
-    templateUrl: '/teams/EOCBM/admin/app/bulkUpdateByPersonalRef/view2/view2.html',
+    templateUrl: 'view2/view2.html',
     controller: 'View2Ctrl'
   });
 }])
@@ -70,5 +70,7 @@ angular.module('myApp.view2', ['ngRoute'])
   function appendItemsIntoGrid(items){
     
   }
-  ExecuteOrDelayUntilScriptLoaded(findL1L4,"sp.js");
+  if(typeof ExecuteOrDelayUntilScriptLoaded != 'undefined'){
+   ExecuteOrDelayUntilScriptLoaded(findL1L4,"sp.js");
+  }
 }]);
