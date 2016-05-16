@@ -4,7 +4,7 @@ angular.module('myApp.view1', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/view1', {
-    templateUrl: 'view1/view1.html',
+    templateUrl: '/teams/EOCBM/admin/app/bulkUpdateByPersonalRef/view1/view1.html',
     controller: 'View1Ctrl'
   });
 }])
@@ -13,28 +13,12 @@ angular.module('myApp.view1', ['ngRoute'])
   /**
    * Created by zhou on 07/05/2016.
    */
-  var noOfRecrodToRestore=2;
-  var live=true;
+  var noOfRecrodToRestore=99;
+
   var itemState=1;
+  $scope.live=false;
   $scope.myData = [
-    /*{
-      "firstName": "Cox",
-      "lastName": "Carney",
-      "company": "Enormo",
-      "employed": true
-    },
-    {
-      "firstName": "Lorraine",
-      "lastName": "Wise",
-      "company": "Comveyer",
-      "employed": false
-    },
-    {
-      "firstName": "Nancy",
-      "lastName": "Waters",
-      "company": "Fuelton",
-      "employed": false
-    }*/
+
   ];
 
 
@@ -62,17 +46,21 @@ angular.module('myApp.view1', ['ngRoute'])
           var itemToRestore={"title":recycleBinItem.get_title(),
                            "dirName":recycleBinItem.get_dirName(),
                            "deletedDate":recycleBinItem.get_deletedDate(),
-                           "deletedBy":recycleBinItem.get_deletedBy(),
+                           "deletedBy":recycleBinItem.get_deletedBy()
           }
           console.log("pushed one item");
-          console.log($scope.myData.length);
+       /*   console.log(itemToRestore);
+          console.log($scope.myData.length);*/
+
           $scope.myData.push(itemToRestore);
+
         }
         $scope.$digest();
+
       }
 
     }
-    $scope.myData
+
    // $scope.myData = recycleItemArray;
   }
   function loopThroughRecycleItems(recycleItemCollection) {
@@ -95,7 +83,7 @@ angular.module('myApp.view1', ['ngRoute'])
   function processNextRecord(recycleItemCollection,nextIndex)
   {
     if(nextIndex<noOfRecrodToRestore&&nextIndex<recycleItemCollection.get_count()){
-      this.item = recycleItemCollection.itemAt(nextIndex);
+      var item = recycleItemCollection.itemAt(nextIndex);
       var id = item.get_id();
       var title = item.get_title();
       var itemState=item.get_itemState();
@@ -121,7 +109,7 @@ angular.module('myApp.view1', ['ngRoute'])
   function addAudit(item){
     var dfd=jQuery.Deferred();
     //add audit trial
-    setTimeout(function(){dfd.resolve();},30);
+    setTimeout(function(){dfd.resolve();},0);
     return dfd.promise();
 
   }
@@ -130,7 +118,7 @@ angular.module('myApp.view1', ['ngRoute'])
     var dfd=jQuery.Deferred();
     //retore item
 
-    if(this.live)
+    /*if($scope.live)
     {
       item.restore();
       var itemContext=item.get_context();
@@ -138,9 +126,9 @@ angular.module('myApp.view1', ['ngRoute'])
       itemContext.executeQueryAsync(function(){dfd.resolve();},onQueryFailed);
     }
     else
-    {
+    {*/
       setTimeout(function(){dfd.resolve();},30);
-    }
+    /*}*/
 
     return dfd.promise();
 
@@ -151,57 +139,18 @@ angular.module('myApp.view1', ['ngRoute'])
   function onQueryFailed(sender, args) {
     alert('Request failed. ' + args.get_message() + '\n' + args.get_stackTrace());
   }
+  var recycleItemCollection;
   function runCode() {
-    this.clientContext = new SP.ClientContext.get_current();
+   var clientContext = new SP.ClientContext.get_current();
 
     var site = clientContext.get_site();
-    this.recycleItemCollection = site.get_recycleBin();
+    recycleItemCollection = site.get_recycleBin();
 
-    clientContext.load(this.recycleItemCollection);
-    clientContext.executeQueryAsync(Function.createDelegate(this, this.onQuerySucceeded), Function.createDelegate(this, this.onQueryFailed));
+    clientContext.load( recycleItemCollection);
+    clientContext.executeQueryAsync(Function.createDelegate(this, onQuerySucceeded), Function.createDelegate(this, onQueryFailed));
 
-
-  }
-  var recycleItemCollection;
-  function setUp(){
-    recycleItemCollection={};
-    recycleItemCollection.get_count=function(){return 2;};
-    recycleItemCollection.itemAt=function(index){
-
-      var item={};
-      item.get_id=function(){return 1};
-      item.get_title=function(){return "my title"};
-      item.get_itemState=function(){return 1};
-      item.get_dirName=function(){return "my dirName"};
-      item.get_deletedBy=function(){return "my deletedBy"};
-      item.get_deletedDate=function(){return "my deletedDate"};
-      return item;
-    };
 
   }
-// Anonymous "self-invoking" function
-  (function() {
-    // Load the script
-    var script = document.createElement("SCRIPT");
-    script.src = 'https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js';
-    script.type = 'text/javascript';
-    document.getElementsByTagName("head")[0].appendChild(script);
 
-    // Poll for jQuery to come into existance
-    var checkReady = function(callback) {
-      if (window.jQuery) {
-        callback(jQuery);
-      }
-      else {
-        window.setTimeout(function() { checkReady(callback); }, 100);
-      }
-    };
-
-    // Start polling...
-    checkReady(function(jQuery) {
-      //runCode();
-      setUp();
-      onQuerySucceeded();
-    });
-  })();
+  ExecuteOrDelayUntilScriptLoaded(runCode,"sp.js");
 }]);

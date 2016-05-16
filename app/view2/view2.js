@@ -4,89 +4,71 @@ angular.module('myApp.view2', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/view2', {
-    templateUrl: 'view2/view2.html',
+    templateUrl: '/teams/EOCBM/admin/app/bulkUpdateByPersonalRef/view2/view2.html',
     controller: 'View2Ctrl'
   });
 }])
 
 .controller('View2Ctrl', ['$scope','$q',function($scope,$q) {
-  function retrieveListItems(){
-    var listTitle="test";
-    var queryString="$select=Title,Employee,Company";
-    var endArray=[];
-    getListItemViaREST("testlist1","$select=Title,Employee,Company").then(
-        function(data){
-          consolidateListData(endArray,data);
-          return getListItemViaREST("testlist2","$select=Title,Employee,Company");
-        }
-    ).then(
-        function(data){
-          consolidateListData(endArray,data);
-          return getListItemViaREST("testlist3","$select=Title,Employee,Company");
-        }
-    ).then(
-        function(data){
-          consolidateListData(endArray,data);
-        }
-    ).catch(function(data){cosole.error(data);alert("retrieve list item failed");});
+  /**
+   * Created by zhou on 07/05/2016.
+   */
 
+  $scope.live=false;
+  $scope.myData = [
+
+  ];
+
+  function onQueryFailed(sender, args) {
+    alert('Request failed. ' + args.get_message() + '\n' + args.get_stackTrace());
+    dfd.reject(args);
+  }
+
+  var dfd;
+  var collListItem;
+  function getListItemByPersonalReference(listTitle,personalReference,columnList){
+
+    dfd=$q.defer();
+    var clientContext =  new SP.ClientContext.get_current();
+    var oList = clientContext.get_web().get_lists().getByTitle(listTitle);
+
+    var camlQuery = new SP.CamlQuery();
+    camlQuery.set_viewXml('<View><Query><Where><Geq><FieldRef Name=\'PersonalReference\'/>' +
+        '<Value Type=\'text\'>'+personalReference+'</Value></Geq></Where></Query><RowLimit>5499</RowLimit></View>');
+    collListItem = oList.getItems(camlQuery);
+
+    clientContext.load(collListItem,'Include('+columnList+')');
+
+    clientContext.executeQueryAsync(onGetListItemBypersonalReferenceQuerySucceeded, onQueryFailed);
+
+    return dfd.promise;
 
   }
 
-
-  function consolidateListData(endArray,listItems)
-  {
-
-    return endArray;
+  function getListItemByPersonalReference (){
+    dfd.resolve(collListItem);
   }
 
-  function getListItemViaREST(listTitle,queryString){
-    var deferred = $q.defer();
-    $http(
-        {
-          method: 'GET',
-          url: _spPageContextInfo.webAbsoluteUrl +
-          "/_api/web/lists/getByTitle('"+listTitle+"')/items?"+queryString,
-          headers:
-          {
-            "Accept": "application/json;odata=verbose"
-          }
-        }).success(function(data, status,
-                            headers, config)
-    {
-
-      deferred.resolve(data.d.results);
-    }).error(function(data, status,
-                      headers, config) {
-      deferred.reject(data);
+  function findL1L4(){
+    //get L4 from All five L4 lists
+    var personalReference="ABSciex";
+    var columnList="ClientCIS,L4LegalName";
+    getListItemByPersonalReference("L4UK",personalReference,columnList).then(function(items){
+      appendItemsIntoGrid(items);
+      return getListItemByPersonalReference("L4NL",personalReference,columnList);
+    }).then(function(items){
+      appendItemsIntoGrid(items);
+      return getListItemByPersonalReference("L4EMEA",personalReference,columnList);
+    }).then(function(items){
+      appendItemsIntoGrid(items);
+    }).fail(function(error){
+       console.error(error);
     });
 
-    return deferred.promise;
-  }
-
-  var myData = [
-    {
-     "firstName": "Cox",
-     "lastName": "Carney",
-     "company": "Enormo",
-     "employed": true
-     },
-     {
-     "firstName": "Lorraine",
-     "lastName": "Wise",
-     "company": "Comveyer",
-     "employed": false
-     },
-     {
-     "firstName": "Nancy",
-     "lastName": "Waters",
-     "company": "Fuelton",
-     "employed": false
-     }
-  ];
-  $scope.gridOptions = {
-    data: myData,
-    enableFiltering: true
   };
 
+  function appendItemsIntoGrid(items){
+    
+  }
+  ExecuteOrDelayUntilScriptLoaded(findL1L4,"sp.js");
 }]);
