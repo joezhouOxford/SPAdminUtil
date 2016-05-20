@@ -1,3 +1,154 @@
+/*
+hide SharePoint 2010 elements
+*/
+/*RBS Custom Top and Side Bar*/
+.s4-notdlg{
+  display: none;
+}
+
+
+
+
+/*RBS Main Content*/
+
+.s4-ca{
+  width:100% !important;
+  margin:0px;
+}
+
+.ms-WPBody {
+  margin: 0px;
+}
+
+.s4-ca {
+  width: 100%;
+}
+/* hide the add item button from the views */
+.s4-itm-hdrcol{
+  display: none;
+}
+
+
+
+/* fad and cursor image on hover */
+
+img:hover{
+  opacity:0.4; /* how much transparent you want image to be*/
+  filter:alpha(opacity=40); /* browser fix*/
+  -webkit-opacity:0.4; /*vendor prefixes for website browsers*/
+  -moz-opacity:0.4; /*same as above */
+  cursor: pointer;
+}
+
+
+
+/* wrap text in headers */
+.ms-vh2 {white-space: normal}
+
+
+.ms-vh2  {white-space: normal}
+
+
+
+/*Hide Ribbon */
+
+.ms-cui-ribbon{
+  display: none;
+  min-height: 0px;
+  margin: 0px;
+}
+
+#s4-ribbonrow{
+  display: none;
+  height: 0px;
+  min-height: 0px;
+  margin: 0px;
+}
+
+.s4-ribbonrowhidetitle {
+  display: none;
+  min-height: 0px;
+  margin: 0px;
+}
+
+.s4-pr {
+  height: 0px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Change list headers */
+
+.ms-vh {
+  background: #CEEDF7;
+  font-size: 9pt;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.ms-vh A:link {
+  color: #000000;
+  font-size: 9pt;
+  font-weight: bold;
+  padding:10px 5px 2px 5px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.ms-vh2 {
+  background: #CEEDF7;
+  font-size: 9pt;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.ms-vh2 A:link{
+  color: #000000;
+  font-size: 9pt;
+  font-weight: bold;
+  padding:10px 5px 2px 5px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.ms-vh-icon{
+  background: #CEEDF7;
+}
+
+
+
+.ms-vh2 {
+  white-space: normal;
+}
+
+.ms-addnew{
+  display:none;
+}
+
+
+
+
+
+
+/* hide blue border on active webpart */
+
+.s4-wpActive .s4-wpTopTable{
+  border: 1px solid #ffffff;
+}
+
+/* end of hiden sp2010 elements*/
+
+
 /* app css stylesheet */
 
 .menu {
@@ -31,6 +182,22 @@
 
 .myGrid {
   border: 1px solid rgb(212,212,212);
-  width: 500px;
-  height: 250px;
+  width: 100%;
+  height: inherit;
 }
+html {
+  height: 100%;
+}
+
+body{
+  height: 94%;
+}
+#angular-View{
+  height:inherit;
+}
+
+/*
+fix in SharePoint
+*/
+
+/* enf of fix in SP */

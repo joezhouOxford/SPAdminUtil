@@ -1,0 +1,117 @@
+﻿
+
+<link rel="stylesheet" type="text/css" href="http://sharepoint.fm.rbsgrp.net/teams/EOCBM/admin/superfish-1.4.8/css/superfish.css" media="screen">
+<style>
+        ul.sf-menu { width: 100%; background-color:#ffffff;  }
+        .ms-WPBody A:link { color: #eeeeee; }
+        .ms-WPBody A:visited { color: #eeeeee; }
+
+        .ms-navheader { color: #003481; }
+        .sf-menu A:link { color: #003481; }
+        .sf-menu A:visited { color: #003481; }
+        .sf-menu A:hover { color: #003481; }
+
+
+        .ms-WPBody A:hover { color: #ffffff; }
+
+        /*color of links when just hovered over*/
+        .sf-menu li.sfHover{
+        background: #ffffff;
+        }
+
+        .sf-menu a:focus, .sf-menu a:hover {
+	        background: #00205b;
+
+        }
+
+
+        /* tree highlighting*/
+        .sf-menu li:hover, .sf-menu a:active {
+        background: #f0f0f0;
+        border: 10px;
+        border-color: #eeeeee;
+        } 
+
+        .widebar{
+        position: relative;
+        top: -11px;
+        height: 2px;
+        width: 100%;
+        background: #696969;
+        z-index: 901; 
+        }
+
+        .h1 {
+        color: #696969;
+        }
+
+        /*.sf-menu li:hover,  , .sf-menu a:active*/
+</style>
+
+<!--<script type="text/javascript" src="http://sharepoint.fm.rbsgrp.net/teams/EOCBM/admin/js/jquery-1.6.4.js"></script>-->
+<script type="text/javascript" src="http://sharepoint.fm.rbsgrp.net/teams/EOCBM/admin/js/spjs-utility.js"></script>
+<script type="text/javascript" src="http://sharepoint.fm.rbsgrp.net/teams/EOCBM/admin/superfish-1.4.8/js/superfish.js"></script>
+<script type="text/javascript" src="http://sharepoint.fm.rbsgrp.net/teams/EOCBM/admin/superfish-1.4.8/SuperfishForSharePoint.js"></script>
+
+<table  width="98%" cellSpacing=0 cellPadding=0 border=0 style=" margin-left: 20px;">
+
+	   <tr>
+	   	   <TD vAlign=center align=left rowspan="2">
+		   	   <img src="http://cib.rbs.com/content/dam/mib/images/mib/logo/cib-rbs-logo_03.png" alt="RBS Capital Resolution" title="RBS Capital Resolution" border="0" />
+
+		   </td>
+
+		   <td align=right>
+			   <font style="color: #696969; font-size: 0.8em;">UTC Date: 
+		   	   <div id='clockDiv'></div></font>
+				<script type="text/javascript">
+				function clock() {
+				   var now = new Date();
+				   var y = now.getUTCFullYear();
+				   var mnt = now.getUTCMonth() + 1;
+				   var d = now.getUTCDate();
+				   var h = now.getUTCHours();
+				   var m = now.getUTCMinutes();
+				   var s = now.getUTCSeconds();
+
+				    if (h < 10) h = "0" + h;
+				    if (m < 10) m = "0" + m;
+				    if (s < 10) s = "0" + s;
+				   var outStr = '  ' + y +'/'+ mnt  +'/'+d+'     '+h +':'+ m +':'+ s;
+				   document.getElementById('clockDiv').innerHTML=outStr;
+				   setTimeout('clock()',1000);
+				}
+				clock();
+				</script>
+</td>
+</tr>
+<tr>
+
+<td align=left>
+<style type="text/css">
+    /* .underline {
+	    padding-bottom: 5px;
+    } */
+    .sf-menu li {
+
+    }
+    #menuPlaceholder a {
+	    text-decoration:none;
+    }
+</style>
+<div id="menuPlaceholder" style="z-index: 900; position: relative;"></div> <!-- style="z-index: -800;" -->
+
+
+
+<script type="text/javascript">
+
+var argObj = {menuID:'Nimble',
+			  listBaseUrl:L_Menu_BaseUrl,
+			  orderBy:'SortOrder'};
+
+getSuperfishMenuData(argObj);
+</script>
+</td>
+</tr>
+</table>
+<div class="widebar"> </div>

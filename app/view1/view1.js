@@ -13,13 +13,11 @@ angular.module('myApp.view1', ['ngRoute'])
   /**
    * Created by zhou on 07/05/2016.
    */
-  var noOfRecrodToRestore=99;
+  var noOfRecrodToRestore=10;
 
   var itemState=1;
   $scope.live=false;
-  $scope.myData = [
-
-  ];
+  $scope.myData = [{"title":"test title","dirName":"Test dir name","deletedDate":"test"}];
 
 
   function onQuerySucceeded()
@@ -48,7 +46,7 @@ angular.module('myApp.view1', ['ngRoute'])
                            "deletedDate":recycleBinItem.get_deletedDate(),
                            "deletedBy":recycleBinItem.get_deletedBy()
           }
-          console.log("pushed one item");
+         // console.log("pushed one item");
        /*   console.log(itemToRestore);
           console.log($scope.myData.length);*/
 
@@ -65,7 +63,7 @@ angular.module('myApp.view1', ['ngRoute'])
   }
   function loopThroughRecycleItems(recycleItemCollection) {
     if (recycleItemCollection.get_count() > 0) {
-      console.log("has recycle item");
+     // console.log("has recycle item");
       processNextRecord(recycleItemCollection,0);
 
     }
@@ -91,10 +89,10 @@ angular.module('myApp.view1', ['ngRoute'])
       if(itemFilter(item))
       {
         jQuery.when(addAudit(item)).done(function(){
-          console.log("audit done");
+         // console.log("audit done");
           return restoreItem(item);
         }).done(function(){
-          console.log("retore item done");
+         // console.log("retore item done");
           processNextRecord(recycleItemCollection,nextIndex+1);
         }).fail(promiseFail);
       }
@@ -153,6 +151,14 @@ angular.module('myApp.view1', ['ngRoute'])
   }
   if(typeof ExecuteOrDelayUntilScriptLoaded != 'undefined'){
     ExecuteOrDelayUntilScriptLoaded(runCode,"sp.js");
+  }
+  else
+  {
+    var testItem= {"title":"test title","dirName":"Test dir name","deletedDate":"test"};
+    for(var i=1;i<noOfRecrodToRestore;i++)
+    {
+     // $scope.myData.push(testItem);
+    }
   }
 
 }]);
