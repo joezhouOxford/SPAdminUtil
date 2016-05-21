@@ -33,7 +33,7 @@
             <md-button class="md-raised md-primary" ng-click="ctrl.personalRefSearch.search(ctrl.personalRefSearch.searchText);">Search</md-button>
         </div>
 
-        <div layout="row"  ng-hide="ctrl.BulkChangeSet.updateQueue.data.length==0">
+        <div layout="row"  ng-hide="ctrl.BulkChangeSet.updateQueue.data.length==0" class="animate-show">
 
             <md-chips ng-model="ctrl.BulkChangeSet.updateQueue.data" name="updateItem" readonly="ctrl.BulkChangeSet.updateQueue.readonly" md-max-chips="5">
                 <md-chip-template>
@@ -45,7 +45,7 @@
         </div>
 
         <!-- start of update panel-->
-        <div ng-hide="!gridApi.selection.getSelectedRows().length">
+        <div ng-hide="!gridApi.selection.getSelectedRows().length" class="check-element animate-show">
         <div layout="row" layout-align="left top" layout-margin layout-padding>
 
 
@@ -95,16 +95,18 @@
         <!-- end of update panel-->
 
         <md-progress-linear md-mode="indeterminate" ng-hide="!ctrl.personalRefSearch.inSearch"></md-progress-linear>
-        <div layout-gt-sm="row">
+
+        <div layout="row">
             <div layout="column">
                 <h3>L4s</h3>
                 <div>{{gridApi.selection.getSelectedRows().length}} rows selected</div>
-                <div ui-grid="gridOptions" ui-grid-selection class="myGrid"></div>
+                <div ui-grid="gridOptions" ui-grid-selection class="myGrid" ui-grid-auto-resize></div>
             </div>
 
 
 
         </div>
+
 </div>
    <!-- <div layout="column" layout-align="center center"
           class="md-padding">

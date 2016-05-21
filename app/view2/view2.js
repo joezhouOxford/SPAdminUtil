@@ -21,16 +21,16 @@ angular.module('myApp.view2', ['ngRoute','ngMaterial'])
   };*/
 }])
 
-.controller('View2Ctrl', ['$scope','$q','$log','$timeout','$mdDialog',function($scope,$q,$log,$timeout,$mdDialog) {
+.controller('View2Ctrl', ['$scope','$q','$log','$timeout','$mdDialog','$window',function($scope,$q,$log,$timeout,$mdDialog,$window) {
   var goLive=false;
-  var listColumnTitleArray=["ClientCIS","Operational Point Zero Date","All Accounts On Buses","New Bank Accounts Setup","L4Client Indicated Cash Date","L4Client Indicated Trade Date","Client Mandated New Bank","Detailed Onboarding Plan In Place"];
+  var listColumnTitleArray=["Client CIS","Operational Point Zero Date","All Accounts On Buses","New Bank Accounts Setup","L4Client Indicated Cash Date","L4Client Indicated Trade Date","Client Mandated New Bank","Detailed Onboarding Plan In Place"];
   var listColumnInternalNameArray=[];
 
     angular.forEach(listColumnTitleArray,function(listTitle){
           var internalName=listTitle.replace(/\s/g, "");
           switch(internalName)
           {
-            case "ClientCIS":
+            case "Client CIS":
               internalName="Title";
                   break;
 
@@ -44,11 +44,20 @@ angular.module('myApp.view2', ['ngRoute','ngMaterial'])
 
 
  var columnDefs=[{name:'id',visible:false},
-   {name:'ListTitle',visible:false}];
-  angular.forEach(listColumnTitleArray,function(columnTitle){
-    var def={name:columnTitle};
-    columnDefs.push(def);
-  });
+   {name:'ListTitle',visible:true,headerTooltip:"List Title",width:100}];
+    $timeout( function() {
+        angular.forEach(listColumnTitleArray,function(columnTitle){
+            var def={
+                name:columnTitle,
+                headerTooltip:columnTitle,
+                width: columnTitle.length*10
+            };
+
+            columnDefs.push(def);
+        });
+    });
+
+
   $scope.gridOptions={
     data :gridData,
     enableFiltering: true,
@@ -56,9 +65,10 @@ angular.module('myApp.view2', ['ngRoute','ngMaterial'])
     enableSelectAll: true,
     enableColumnMenus: true,
     gridMenuShowHideColumns:false,
-
+    enableColumnResize:true,
    // enableFullRowSelection:true
     columnDefs:columnDefs
+
 
 
   };
@@ -66,6 +76,9 @@ angular.module('myApp.view2', ['ngRoute','ngMaterial'])
   $scope.gridOptions.onRegisterApi = function(gridApi){
     //set gridApi on scope
     $scope.gridApi = gridApi;
+    gridApi.core.on.rowsRendered($scope,function(){
+      resizeGrid();
+    });
 //single row selection
    /* gridApi.selection.on.rowSelectionChanged($scope,function(row){
       recordRow(row);
@@ -472,6 +485,7 @@ self.personalRefSearch={
     }
 
     $log.log("search triggered");
+
     //clear existing result
     gridData.length=0;
     showLoadingScreen();
@@ -485,6 +499,7 @@ self.personalRefSearch={
     }
     findL1L4Promise.then(function(){
       showLoadingScreen();
+
     });
   };
   function showLoadingScreen(){
@@ -509,4 +524,10 @@ self.personalRefSearch={
       return "dev";
     }
   }
+    var resizeGrid = function () {
+      $log.log($window.innerWidth);
+       // angular.element(document.getElementsByClassName('myGrid')[0]).css('height', $window.innerHeight + 'px');
+        angular.element(document.getElementsByClassName('myGrid')[0]).css('width', $window.innerWidth-50 + 'px');
+    };
+
 }]);

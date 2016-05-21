@@ -6,7 +6,8 @@ angular.module('myApp', [
     'myApp.view1',
     'myApp.view2',
     'ui.grid',
-    'ui.grid.selection'
+    'ui.grid.selection',
+    'ngAnimate'
 
 ])
 .
