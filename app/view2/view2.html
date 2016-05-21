@@ -24,13 +24,16 @@
 
 
         <p>Please input the personal reference in the input box below, then click the search button.</p>
-        <div layout="row" layout-align="center center" >
+        <div layout="row" layout-align="end start" >
 
                 <md-input-container>
                     <label>Personal reference</label>
                     <input type="text" ng-model="ctrl.personalRefSearch.searchText"/>
                 </md-input-container>
+
+
             <md-button class="md-raised md-primary" ng-click="ctrl.personalRefSearch.search(ctrl.personalRefSearch.searchText);">Search</md-button>
+
         </div>
 
         <div layout="row"  ng-hide="ctrl.BulkChangeSet.updateQueue.data.length==0" class="animate-show">
@@ -46,15 +49,13 @@
 
         <!-- start of update panel-->
         <div ng-hide="!gridApi.selection.getSelectedRows().length" class="check-element animate-show">
-        <div layout="row" layout-align="left top" layout-margin layout-padding>
-
-
-            <md-datepicker ng-model="ctrl.BulkChangeSet.OperationalPointZeroDate" md-placeholder="OZD" ng-change="ctrl.BulkChangeSet.AddAction('OperationalPointZeroDate')" md-tooltip="Operational Point">
+        <div layout="row" layout-align="space-between">
+            <md-datepicker ng-model="ctrl.BulkChangeSet.OperationalPointZeroDate" md-placeholder="OZD" ng-change="ctrl.BulkChangeSet.AddAction('OperationalPointZeroDate')" md-tooltip="Operational Point" >
 
             </md-datepicker>
 
 
-            <md-input-container>
+            <md-input-container class="datepicker-align">
                 <label>AllAccountsOnBuses</label>
                 <md-select ng-model="ctrl.BulkChangeSet.AllAccountsOnBuses" ng-change="ctrl.BulkChangeSet.AddAction('AllAccountsOnBuses')">
                     <md-option ng-repeat="option in ctrl.BulkChangeSet.initData.AllAccountsOnBuses" value="{{option}}">
@@ -63,7 +64,7 @@
                 </md-select>
 
             </md-input-container>
-            <md-input-container>
+            <md-input-container class="datepicker-align">
                 <label>New Bank Accounts Setup</label>
                 <md-select ng-model="ctrl.BulkChangeSet.NewBankAccountsSetup" ng-change="ctrl.BulkChangeSet.AddAction('NewBankAccountsSetup')">
                     <md-option ng-repeat="option in ctrl.BulkChangeSet.initData.NewBankAccountsSetup" value="{{option}}">
@@ -75,13 +76,13 @@
             <md-datepicker ng-model="ctrl.BulkChangeSet.L4ClientIndicatedCashDate" md-placeholder="Indicated Cash Date" ng-change="ctrl.BulkChangeSet.AddAction('L4ClientIndicatedCashDate')" ></md-datepicker>
 </div>
 
-        <div layout="row" layout-align="left top" layout-margin layout-padding>
+        <div layout="row" layout-align="space-between" >
 
-            <md-datepicker ng-model="ctrl.BulkChangeSet.L4ClientIndicatedTradeDate" md-placeholder="Indicated Trade Date" ng-change="ctrl.BulkChangeSet.AddAction('L4ClientIndicatedTradeDate')" ></md-datepicker>
+            <md-datepicker ng-model="ctrl.BulkChangeSet.L4ClientIndicatedTradeDate" md-placeholder="Indicated Trade Date" ng-change="ctrl.BulkChangeSet.AddAction('L4ClientIndicatedTradeDate')"></md-datepicker>
             <md-datepicker ng-model="ctrl.BulkChangeSet.ClientMandatedNewBank" md-placeholder="Client Mandated New Bank" ng-change="ctrl.BulkChangeSet.AddAction('ClientMandatedNewBank')" ></md-datepicker>
 
 
-            <md-input-container>
+            <md-input-container class="datepicker-align">
                 <label>Detailed Onboarding Plan In Place</label>
                 <md-select ng-model="ctrl.BulkChangeSet.DetailedOnboardingPlanInPlace" ng-change="ctrl.BulkChangeSet.AddAction('DetailedOnboardingPlanInPlace')">
                     <md-option ng-repeat="option in ctrl.BulkChangeSet.initData.DetailedOnboardingPlanInPlace" value="{{option}}">
@@ -96,11 +97,11 @@
 
 
 
-        <div layout="row">
+        <div layout="row" ng-show="ctrl.showResult" Class="animate-show">
             <div layout="column">
                 <md-progress-linear md-mode="indeterminate" ng-hide="!ctrl.personalRefSearch.inSearch"></md-progress-linear>
                 <h3>L4s</h3>
-                <div>{{gridApi.selection.getSelectedRows().length}} rows selected</div>
+
                 <div ui-grid="gridOptions" ui-grid-selection class="myGrid" ui-grid-resize-columns></div>
             </div>
 

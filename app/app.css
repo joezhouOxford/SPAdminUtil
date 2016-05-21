@@ -231,3 +231,7 @@ fix in SharePoint
  /* width: inherit;*/
 
 }
+
+.datepicker-align {
+  margin-top: 16px;
+}

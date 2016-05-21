@@ -65,6 +65,7 @@ angular.module('myApp.view2', ['ngRoute','ngMaterial'])
     enableSelectAll: true,
     enableColumnMenus: true,
     gridMenuShowHideColumns:false,
+    showGridFooter: true,
 
    // enableFullRowSelection:true
     columnDefs:columnDefs
@@ -238,6 +239,7 @@ function recordRow(row){
   }
 
  var self=this;
+  self.showResult=false;
   self.BulkChangeSet={
     "Status":"",
 
@@ -483,7 +485,7 @@ self.personalRefSearch={
       //abort
       return;
     }
-
+    self.showResult=true;
     $log.log("search triggered");
 
     //clear existing result
