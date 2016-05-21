@@ -94,13 +94,14 @@
         </div>
         <!-- end of update panel-->
 
-        <md-progress-linear md-mode="indeterminate" ng-hide="!ctrl.personalRefSearch.inSearch"></md-progress-linear>
+
 
         <div layout="row">
             <div layout="column">
+                <md-progress-linear md-mode="indeterminate" ng-hide="!ctrl.personalRefSearch.inSearch"></md-progress-linear>
                 <h3>L4s</h3>
                 <div>{{gridApi.selection.getSelectedRows().length}} rows selected</div>
-                <div ui-grid="gridOptions" ui-grid-selection class="myGrid" ui-grid-auto-resize></div>
+                <div ui-grid="gridOptions" ui-grid-selection class="myGrid" ui-grid-resize-columns></div>
             </div>
 
 

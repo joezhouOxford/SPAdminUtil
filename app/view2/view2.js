@@ -65,7 +65,7 @@ angular.module('myApp.view2', ['ngRoute','ngMaterial'])
     enableSelectAll: true,
     enableColumnMenus: true,
     gridMenuShowHideColumns:false,
-    enableColumnResize:true,
+
    // enableFullRowSelection:true
     columnDefs:columnDefs
 

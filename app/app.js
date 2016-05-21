@@ -7,6 +7,7 @@ angular.module('myApp', [
     'myApp.view2',
     'ui.grid',
     'ui.grid.selection',
+    'ui.grid.resizeColumns',
     'ngAnimate'
 
 ])
