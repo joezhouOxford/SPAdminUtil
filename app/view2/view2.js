@@ -533,7 +533,7 @@ self.personalRefSearch={
       var leftNavWidth=document.querySelectorAll(".lefNav")[0].clientWidth;
       $log.log("windows width:"+$window.innerWidth);
       $log.log("leftNavWidth:"+leftNavWidth);
-      var offSet=17;
+      var offSet=16;
       var gridWidth=$window.innerWidth-leftNavWidth-offSet;
       $log.log("gridWidth:"+gridWidth);
         angular.element(document.getElementsByClassName('myGrid')[0]).css('width', gridWidth + 'px');

@@ -246,3 +246,13 @@ fix in SharePoint
 {
   width:190px;
 }
+html,body{
+  font-family:'Roboto',sans-serif;
+  font-size:14px;
+  height:100%;
+  margin:0px;
+  padding:0px;
+}
+.md-chips{
+  font-size: 12px!important;
+}

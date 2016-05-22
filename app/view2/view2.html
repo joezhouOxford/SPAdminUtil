@@ -1,7 +1,7 @@
 <div ng-controller="View2Ctrl as ctrl" ng-cloak class="md-inline-form" layout="row" flex>
 
-        <md-sidenav layout="column" class="lefNav" md-is-locked-open="true">
-
+        <md-sidenav layout="column" class="lefNav md-whiteframe-10dp" md-is-locked-open="true">
+            <div id="searchBox" layout="column">
             <h4>Search L1s and L4s</h4>
 
                 <md-input-container>
@@ -10,12 +10,12 @@
                     <input type="text" ng-model="ctrl.personalRefSearch.searchText"/>
 
                 </md-input-container>
+                <md-button class="md-raised md-primary" ng-click="ctrl.personalRefSearch.search(ctrl.personalRefSearch.searchText);">Search
+            </md-button>
+            </div>
+            <div layout="column" ng-hide="ctrl.BulkChangeSet.updateQueue.data.length==0" class="animate-show md-whiteframe-12dp">
 
 
-                <md-button class="md-raised md-primary"
-                           ng-click="ctrl.personalRefSearch.search(ctrl.personalRefSearch.searchText);">Search
-                </md-button>
-            <div ng-hide="ctrl.BulkChangeSet.updateQueue.data.length==0" class="animate-show">
                 <md-chips ng-model="ctrl.BulkChangeSet.updateQueue.data" name="updateItem"
                           readonly="ctrl.BulkChangeSet.updateQueue.readonly" md-max-chips="5">
                     <md-chip-template>
@@ -26,18 +26,18 @@
                         <em>({{$chip.value}})</em>
                     </md-chip-template>
                 </md-chips>
-
+                <md-button class="md-raised md-primary animate-show" ng-click="ctrl.BulkChangeSet.bulkUpdate($event)" ng-hide="ctrl.BulkChangeSet.updateQueue.data.length==0">
+                    Commit Bulk Update
+                </md-button>
             </div>
-            <md-button class="md-raised md-primary animate-show" ng-click="ctrl.BulkChangeSet.bulkUpdate($event)" ng-hide="ctrl.BulkChangeSet.updateQueue.data.length==0">
-                Commit Bulk Update
-            </md-button>
+
 
         </md-sidenav>
         <md-content class="content" layout="column" flex>
 
 
             <!-- start of update panel-->
-            <div ng-hide="!gridApi.selection.getSelectedRows().length" class="check-element animate-show">
+            <div ng-hide="!gridApi.selection.getSelectedRows().length" class="animate-show">
                 <div layout="row" layout-align="start" layout-wrap layout-padding layout-margin>
                     <md-datepicker ng-model="ctrl.BulkChangeSet.OperationalPointZeroDate" md-placeholder="OZD"
                                    ng-change="ctrl.BulkChangeSet.AddAction('OperationalPointZeroDate')"
@@ -102,7 +102,7 @@
             <!-- end of update panel-->
 
 
-            <div layout="row" ng-show="ctrl.showResult" Class="animate-show">
+            <div layout="row" ng-show="ctrl.showResult" Class="animate-show md-whiteframe-12dp">
                 <div layout="column">
                     <md-progress-linear md-mode="indeterminate"
                                         ng-hide="!ctrl.personalRefSearch.inSearch"></md-progress-linear>
