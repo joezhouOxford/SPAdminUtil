@@ -395,7 +395,7 @@ self.personalRefSearch={
            $mdDialog.alert()
                .clickOutsideToClose(true)
                .title('Bulk update completed')
-               .textContent('Bulk upload has been completed. New data will be shown in the search result')
+               .textContent('Bulk upload is completed successuflly. Updated value has been loaded into the result area')
                .ariaLabel('Bulk update completed')
                .ok('OK')
 
@@ -533,7 +533,7 @@ self.personalRefSearch={
       var leftNavWidth=document.querySelectorAll(".lefNav")[0].clientWidth;
       $log.log("windows width:"+$window.innerWidth);
       $log.log("leftNavWidth:"+leftNavWidth);
-      var offSet=16;
+      var offSet=17;
       var gridWidth=$window.innerWidth-leftNavWidth-offSet;
       $log.log("gridWidth:"+gridWidth);
         angular.element(document.getElementsByClassName('myGrid')[0]).css('width', gridWidth + 'px');
