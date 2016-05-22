@@ -242,3 +242,7 @@ fix in SharePoint
 {
   background-color: #0000FF;
 }
+.md-datepicker-input-container,.md-datepicker-input
+{
+  width:180px;
+}

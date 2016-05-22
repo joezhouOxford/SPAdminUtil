@@ -37,7 +37,7 @@
 
             <!-- start of update panel-->
             <div ng-hide="!gridApi.selection.getSelectedRows().length" class="check-element animate-show">
-                <div layout="row" layout-align="space-between">
+                <div layout="row" layout-align="space-between" layout-wrap>
                     <md-datepicker ng-model="ctrl.BulkChangeSet.OperationalPointZeroDate" md-placeholder="OZD"
                                    ng-change="ctrl.BulkChangeSet.AddAction('OperationalPointZeroDate')"
                                    md-tooltip="Operational Point">
@@ -67,12 +67,13 @@
                         </md-select>
 
                     </md-input-container>
+
+               <!-- </div>
+
+                <div layout="row" layout-align="space-between">-->
                     <md-datepicker ng-model="ctrl.BulkChangeSet.L4ClientIndicatedCashDate"
                                    md-placeholder="Indicated Cash Date"
                                    ng-change="ctrl.BulkChangeSet.AddAction('L4ClientIndicatedCashDate')"></md-datepicker>
-                </div>
-
-                <div layout="row" layout-align="space-between">
 
                     <md-datepicker ng-model="ctrl.BulkChangeSet.L4ClientIndicatedTradeDate"
                                    md-placeholder="Indicated Trade Date"
@@ -82,6 +83,10 @@
                                    ng-change="ctrl.BulkChangeSet.AddAction('ClientMandatedNewBank')"></md-datepicker>
 
 
+
+
+                <!--</div>
+                <div layout="row" layout-align="space-between">-->
                     <md-input-container class="datepicker-align">
                         <label>Detailed Onboarding Plan In Place</label>
                         <md-select ng-model="ctrl.BulkChangeSet.DetailedOnboardingPlanInPlace"
@@ -92,8 +97,7 @@
                             </md-option>
                         </md-select>
                     </md-input-container>
-
-                </div>
+                    </div>
             </div>
             <!-- end of update panel-->
 
