@@ -38,7 +38,7 @@
 
             <!-- start of update panel-->
             <div ng-hide="!gridApi.selection.getSelectedRows().length" class="check-element animate-show">
-                <div layout="row" layout-align="space-between" layout-wrap>
+                <div layout="row" layout-align="start" layout-wrap layout-padding layout-margin>
                     <md-datepicker ng-model="ctrl.BulkChangeSet.OperationalPointZeroDate" md-placeholder="OZD"
                                    ng-change="ctrl.BulkChangeSet.AddAction('OperationalPointZeroDate')"
                                    md-tooltip="Operational Point">
@@ -46,8 +46,8 @@
                     </md-datepicker>
 
 
-                    <md-input-container class="datepicker-align">
-                        <label>AllAccountsOnBuses</label>
+                    <md-input-container>
+                        <label>All Accounts On Buses</label>
                         <md-select ng-model="ctrl.BulkChangeSet.AllAccountsOnBuses"
                                    ng-change="ctrl.BulkChangeSet.AddAction('AllAccountsOnBuses')">
                             <md-option ng-repeat="option in ctrl.BulkChangeSet.initData.AllAccountsOnBuses"
@@ -57,7 +57,7 @@
                         </md-select>
 
                     </md-input-container>
-                    <md-input-container class="datepicker-align">
+                    <md-input-container>
                         <label>New Bank Accounts Setup</label>
                         <md-select ng-model="ctrl.BulkChangeSet.NewBankAccountsSetup"
                                    ng-change="ctrl.BulkChangeSet.AddAction('NewBankAccountsSetup')">

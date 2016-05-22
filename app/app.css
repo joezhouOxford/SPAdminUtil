@@ -231,16 +231,16 @@ fix in SharePoint
  /* width: inherit;*/
 
 }
-
-.datepicker-align {
-  margin-top: 16px;
+.md-inline-form md-datepicker{
+  margin-top: 1px!important;
 }
+
 .lefNav{
-  background-color: #00A000;
+ /* background-color: #00A000;*/
 }
 .content
 {
-  background-color: #0000FF;
+ /* background-color: #0000FF;*/
 }
 .md-datepicker-input-container,.md-datepicker-input
 {
