@@ -527,9 +527,20 @@ self.personalRefSearch={
     }
   }
     var resizeGrid = function () {
-      $log.log($window.innerWidth);
-       // angular.element(document.getElementsByClassName('myGrid')[0]).css('height', $window.innerHeight + 'px');
-        angular.element(document.getElementsByClassName('myGrid')[0]).css('width', $window.innerWidth-50 + 'px');
+
+
+      //get left nav width
+      var leftNavWidth=document.querySelectorAll(".lefNav")[0].clientWidth;
+      $log.log("windows width:"+$window.innerWidth);
+      $log.log("leftNavWidth:"+leftNavWidth);
+      var offSet=13;
+      var gridWidth=$window.innerWidth-leftNavWidth-offSet;
+      $log.log("gridWidth:"+gridWidth);
+        angular.element(document.getElementsByClassName('myGrid')[0]).css('width', gridWidth + 'px');
+
+      var gridHeight=document.querySelectorAll(".lefNav")[0].offsetHeight-offSet;
+      $log.log("gridHeight:"+gridHeight);
+        angular.element(document.getElementsByClassName('myGrid')[0]).css('height', gridHeight + 'px');
     };
 
 }]);
