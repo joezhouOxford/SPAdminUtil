@@ -41,6 +41,8 @@ hide SharePoint 2010 elements
 
 .ms-WPBody {
   margin: 0px;
+  font-size:14px;
+  font-family: 'Roboto',sans-serif;
 }
 
 .s4-ca {
@@ -256,3 +258,4 @@ html,body{
 .md-chips{
   font-size: 12px!important;
 }
+

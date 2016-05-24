@@ -31,7 +31,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html id="Html1" lang="<%$Resources:wss,language_value%>" dir="<%$Resources:wss,multipages_direction_dir_value%>"
-runat="server" xmlns:o="urn:schemas-microsoft-com:office:office" __expr-val-dir="ltr">
+runat="server" xmlns:o="urn:schemas-microsoft-com:office:office" __expr-val-dir="ltr" ng-app="myApp">
 <head id="Head1" runat="server">
     <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
     <meta name="GENERATOR" content="Microsoft SharePoint" />
@@ -43,9 +43,9 @@ runat="server" xmlns:o="urn:schemas-microsoft-com:office:office" __expr-val-dir=
         <asp:ContentPlaceHolder ID="PlaceHolderPageTitle" runat="server" />
     </title>
     <!-- CORE CSS -->
-<%--
-    <SharePoint:CssLink ID="CssLink1" runat="server" Version="4" />
 
+    <SharePoint:CssLink ID="CssLink1" runat="server" Version="4" />
+<%--
     <SharePoint:Theme ID="Theme1" runat="server" />
 --%>
     <!--<link rel="stylesheet" type="text/css" href="~/_layouts/1033/styles/controls.css" />-->
@@ -178,7 +178,7 @@ runat="server" xmlns:o="urn:schemas-microsoft-com:office:office" __expr-val-dir=
 
     </script>
 </head>
-<body ng-app="myApp" scroll="no" onload="if (typeof(_spBodyOnLoadWrapper) != 'undefined') _spBodyOnLoadWrapper();"
+<body scroll="no" onload="if (typeof(_spBodyOnLoadWrapper) != 'undefined') _spBodyOnLoadWrapper();"
     class="v4master">
     <form id="Form1" runat="server" onsubmit="if (typeof(_spFormOnSubmitWrapper) != 'undefined') {return _spFormOnSubmitWrapper();} else {return true;}">
     <asp:ScriptManager ID="ScriptManager" runat="server" EnablePageMethods="false" EnablePartialRendering="true"

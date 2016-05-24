@@ -1,36 +1,154 @@
 
-
-<!--[if lt IE 7]>      <div lang="en" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <div lang="en" class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <div lang="en" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <div lang="en" class="no-js"> <!--<![endif]-->
-
     <link rel="stylesheet" href="/teams/EOCBM/admin/app/bulkUpdateByPersonalRef/app.css">
-    <link rel="stylesheet" href="https://cdn.rawgit.com/angular-ui/bower-ui-grid/master/ui-grid.min.css"/>
-    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.css">
+    <link rel="stylesheet" href="/teams/EOCBM/admin/app/bulkUpdateByPersonalRef/css/ui-grid.css"/>
+    <link rel="stylesheet" href="/teams/EOCBM/admin/app/bulkUpdateByPersonalRef/css/angular-material.css">
     <script>
         var siteRootRelativePath="/teams/EOCBM/admin/app/bulkUpdateByPersonalRef/";
     </script>
 
 
-<!--[if lt IE 7]>
-<p class="browsehappy">You are using an <str\ong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-<![endif]-->
+    <!--[if lt IE 10]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please use Google Chrome instead.</p>
+    <![endif]-->
+    <div class="bulkUpdatePage">
+        <div class="topNav">
+    <link rel="stylesheet" type="text/css" href="http://sharepoint.fm.rbsgrp.net/teams/EOCBM/admin/superfish-1.4.8/css/superfish.css" media="screen">
+    <style>
+        ul.sf-menu { width: 100%; background-color:#ffffff;  }
+        /*.ms-WPBody A:link { color: #eeeeee; }
+        .ms-WPBody A:visited { color: #eeeeee; }*/
 
-<div ng-view></div>
+        .ms-navheader { color: #003481; }
+        .sf-menu A:link { color: #003481; }
+        .sf-menu A:visited { color: #003481; }
+        .sf-menu A:hover { color: #003481; }
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.js"></script>
-<script src="https://cdn.rawgit.com/fergaldoyle/angular.js-ie8-builds/master/dist/angular.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-route.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-animate.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-aria.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-messages.min.js"></script>
-<script src="https://cdn.rawgit.com/angular-ui/bower-ui-grid/master/ui-grid.js"></script>
+
+        .ms-WPBody A:hover { color: #ffffff; }
+
+        /*color of links when just hovered over*/
+        .sf-menu li.sfHover{
+            background: #ffffff;
+        }
+
+        .sf-menu a:focus, .sf-menu a:hover {
+            background: #00205b;
+
+        }
+
+
+        /* tree highlighting*/
+        .sf-menu li:hover, .sf-menu a:active {
+            background: #f0f0f0;
+            border: 10px;
+            border-color: #eeeeee;
+        }
+
+        .widebar{
+            position: relative;
+            top: -11px;
+            height: 2px;
+            width: 100%;
+            background: #696969;
+            z-index: 901;
+        }
+
+        .h1 {
+            color: #696969;
+        }
+        .bulkUpdatePage{
+            background-color:rgb(255,255,255);
+        }
+
+        /*.sf-menu li:hover,  , .sf-menu a:active*/
+    </style>
+
+    <!--<script type="text/javascript" src="http://sharepoint.fm.rbsgrp.net/teams/EOCBM/admin/js/jquery-1.6.4.js"></script>-->
+    <script type="text/javascript" src="http://sharepoint.fm.rbsgrp.net/teams/EOCBM/admin/js/spjs-utility.js"></script>
+    <script type="text/javascript" src="http://sharepoint.fm.rbsgrp.net/teams/EOCBM/admin/superfish-1.4.8/js/superfish.js"></script>
+    <script type="text/javascript" src="http://sharepoint.fm.rbsgrp.net/teams/EOCBM/admin/superfish-1.4.8/SuperfishForSharePoint.js"></script>
+
+    <table  width="98%" cellSpacing=0 cellPadding=0 border=0 style=" margin-left: 20px;">
+
+        <tr>
+            <TD vAlign=center align=left rowspan="2">
+                <img src="http://cib.rbs.com/content/dam/mib/images/mib/logo/cib-rbs-logo_03.png" alt="RBS Capital Resolution" title="RBS Capital Resolution" border="0" />
+
+            </td>
+
+            <td align=right>
+                <font style="color: #696969; font-size: 0.8em;">UTC Date:
+                    <div id='clockDiv'></div></font>
+                <script type="text/javascript">
+                    function clock() {
+                        var now = new Date();
+                        var y = now.getUTCFullYear();
+                        var mnt = now.getUTCMonth() + 1;
+                        var d = now.getUTCDate();
+                        var h = now.getUTCHours();
+                        var m = now.getUTCMinutes();
+                        var s = now.getUTCSeconds();
+
+                        if (h < 10) h = "0" + h;
+                        if (m < 10) m = "0" + m;
+                        if (s < 10) s = "0" + s;
+                        var outStr = '  ' + y +'/'+ mnt  +'/'+d+'     '+h +':'+ m +':'+ s;
+                        document.getElementById('clockDiv').innerHTML=outStr;
+                        setTimeout('clock()',1000);
+                    }
+                    clock();
+                </script>
+            </td>
+        </tr>
+        <tr>
+
+            <td align=left>
+                <style type="text/css">
+                    /* .underline {
+                        padding-bottom: 5px;
+                    } */
+                    .sf-menu li {
+
+                    }
+                    #menuPlaceholder a {
+                        text-decoration:none;
+                    }
+                </style>
+                <div id="menuPlaceholder" style="z-index: 75; position: relative;"></div> <!-- style="z-index: -800;" -->
+
+
+
+                <script type="text/javascript">
+
+                    var argObj = {menuID:'Nimble',
+                        listBaseUrl:L_Menu_BaseUrl,
+                        orderBy:'SortOrder'};
+
+                    getSuperfishMenuData(argObj);
+                </script>
+            </td>
+        </tr>
+    </table>
+    <div class="widebar"> </div>
+    </div>
+    <div class="angular-View" ng-view layout="column"></div>
+</div>
+    <!--<script src="/_layouts/SP.debug.js"></script>-->
+
+<script src="/teams/EOCBM/admin/app/bulkUpdateByPersonalRef/lib/moment.js"></script>
+<script src="/teams/EOCBM/admin/app/bulkUpdateByPersonalRef/lib/angular.js"></script>
+<script src="/teams/EOCBM/admin/app/bulkUpdateByPersonalRef/lib/angular-route.js"></script>
+<script src="/teams/EOCBM/admin/app/bulkUpdateByPersonalRef/lib/angular-animate.js"></script>
+<script src="/teams/EOCBM/admin/app/bulkUpdateByPersonalRef/lib/angular-aria.js"></script>
+<script src="/teams/EOCBM/admin/app/bulkUpdateByPersonalRef/lib/angular-messages.min.js"></script>
+<script src="/teams/EOCBM/admin/app/bulkUpdateByPersonalRef/lib/ui-grid.js"></script>
+    <script src="/teams/EOCBM/admin/app/bulkUpdateByPersonalRef/lib/angular-sanitize.min.js"></script>
+    <script src="/teams/EOCBM/admin/app/bulkUpdateByPersonalRef/lib/angular-bind-html-compile.min.js"></script>
+
 <!-- Angular Material Library -->
-<script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js"></script>
+<script src="/teams/EOCBM/admin/app/bulkUpdateByPersonalRef/lib/angular-material.min.js"></script>
 
 <script src="/teams/EOCBM/admin/app/bulkUpdateByPersonalRef/app.js"></script>
-<script src="/teams/EOCBM/admin/app/bulkUpdateByPersonalRef/view1/view1.js"></script>
 <script src="/teams/EOCBM/admin/app/bulkUpdateByPersonalRef/view2/view2.js"></script>
+    <script src="/teams/EOCBM/admin/app/bulkUpdateByPersonalRef/view2/QSTracking.js"></script>
 
-</div>
